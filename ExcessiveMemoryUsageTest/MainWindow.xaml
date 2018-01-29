@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExcessiveMemoryUsageTest"
         mc:Ignorable="d"
+        xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid"
+
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <dxpg:PivotGridControl>
+            
+        </dxpg:PivotGridControl>
     </Grid>
 </Window>
