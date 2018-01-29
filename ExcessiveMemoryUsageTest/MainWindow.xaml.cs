@@ -17,19 +17,20 @@ namespace ExcessiveMemoryUsageTest
         {
             InitializeComponent();
             _factory = new OrdersFactory();
-            InitializeData();
         }
 
         private void InitializeData()
         {
-            pivotGrid.SetDataSourceAsync(Orders, (res) => {
+            for (var i = 0; i < 400000; i++)
+            {
+                Orders.Add(_factory.GenerateNewOrder(i));
+            }
+            pivotGrid.SetDataSourceAsync(Orders);
+        }
 
-                for (var i = 0; i< 700000; i++)
-                {
-                    Orders.Add(_factory.GenerateNewOrder(i));
-                }
-                pivotGrid.ReloadData();
-            });
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            InitializeData();
         }
     }
 }

@@ -9,7 +9,12 @@
 
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <dxpg:PivotGridControl x:Name="pivotGrid" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="Generate Data" Click="ButtonBase_OnClick"></Button>
+        <dxpg:PivotGridControl Grid.Row="1" x:Name="pivotGrid" >
             <dxpg:PivotGridControl.Fields>
                 <dxpg:PivotGridField FieldName="ClientName" Area="RowArea" />
                 
