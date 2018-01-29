@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ExcessiveMemoryUsageTest.Factories;
+using ExcessiveMemoryUsageTest.Models;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExcessiveMemoryUsageTest
 {
@@ -20,9 +10,26 @@ namespace ExcessiveMemoryUsageTest
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ObservableCollection<Order> Orders = new ObservableCollection<Order>();
+        private OrdersFactory _factory;
+
         public MainWindow()
         {
             InitializeComponent();
+            _factory = new OrdersFactory();
+            InitializeData();
+        }
+
+        private void InitializeData()
+        {
+            pivotGrid.SetDataSourceAsync(Orders, (res) => {
+
+                for (var i = 0; i< 700000; i++)
+                {
+                    Orders.Add(_factory.GenerateNewOrder(i));
+                }
+                pivotGrid.ReloadData();
+            });
         }
     }
 }

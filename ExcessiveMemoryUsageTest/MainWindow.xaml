@@ -9,7 +9,26 @@
 
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <dxpg:PivotGridControl>
+        <dxpg:PivotGridControl x:Name="pivotGrid" >
+            <dxpg:PivotGridControl.Fields>
+                <dxpg:PivotGridField FieldName="ClientName" Area="RowArea" />
+                
+                <dxpg:PivotGridField FieldName="Quantity" Area="DataArea" SummaryType="Sum" />
+                <dxpg:PivotGridField FieldName="ExecutionDate" SummaryType="Max" Area="DataArea" />
+                <dxpg:PivotGridField FieldName="Total" SummaryType="Sum" Area="DataArea" />
+                <dxpg:PivotGridField FieldName="SomeNumber1" SummaryType="Sum" Area="DataArea" />
+                <dxpg:PivotGridField FieldName="SomeNumber2" SummaryType="Sum" />
+                <dxpg:PivotGridField FieldName="SomeNumber3" SummaryType="Sum" />
+                <dxpg:PivotGridField FieldName="SomeNumber4" SummaryType="Sum" />
+                <dxpg:PivotGridField FieldName="SomeNumber5" SummaryType="Sum" />
+
+                <dxpg:PivotGridField FieldName="Product.Type" Area="RowArea" />
+
+                <dxpg:PivotGridField FieldName="Product.Name" Area="RowArea" />
+                <dxpg:PivotGridField FieldName="Product.Price" SummaryType="Sum" Area="DataArea" />
+                <dxpg:PivotGridField FieldName="Product.Description" />
+
+            </dxpg:PivotGridControl.Fields>
             
         </dxpg:PivotGridControl>
     </Grid>

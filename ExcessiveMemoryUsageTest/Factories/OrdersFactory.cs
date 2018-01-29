@@ -1,14 +1,11 @@
 ﻿using ExcessiveMemoryUsageTest.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExcessiveMemoryUsageTest.Factories
 {
     public class OrdersFactory
     {
-
         private List<string> _productNames;
         private List<string> _clientNames;
         private List<string> _descriptions;
@@ -23,21 +20,21 @@ namespace ExcessiveMemoryUsageTest.Factories
             _random = new Random(DateTime.Now.Millisecond);
         }
 
-
-        public Order GenerateNewOrder(int id = 0) {
-
+        public Order GenerateNewOrder(int id = 0)
+        {
             var order = new Order();
             order.Product = GenerateNewProduct();
             order.Id = id;
             order.Quantity = _random.Next(0, 1000);
             order.ClientName = _clientNames.GetRandom();
+            order.ExecutionDate = DateTime.Now.AddDays(_random.Next(-100, 100));
 
             order.SomeNumber1 = _random.Next(1000, 99999999) / 1000;
             order.SomeNumber2 = _random.Next(1000, 99999999) / 1000;
             order.SomeNumber3 = _random.Next(1000, 99999999) / 1000;
             order.SomeNumber4 = _random.Next(1000, 99999999) / 1000;
             order.SomeNumber5 = _random.Next(1000, 99999999) / 1000;
-            
+
             return order;
         }
 
@@ -47,8 +44,8 @@ namespace ExcessiveMemoryUsageTest.Factories
 
             product.Description = _descriptions.GetRandom();
             product.Name = _productNames.GetRandom();
-            product.Price = _random.Next(1000, 99999999)/1000;
-            product.Type = (ProductType)_random.Next(0,1);
+            product.Price = _random.Next(1000, 99999999) / 1000;
+            product.Type = (ProductType)_random.Next(0, 2);
 
             return product;
         }
@@ -56,13 +53,11 @@ namespace ExcessiveMemoryUsageTest.Factories
         public List<string> GenerateStrings(string pattern, int count)
         {
             var list = new List<string>();
-            for (int i = 0; i<count; i++)
+            for (int i = 0; i < count; i++)
             {
                 list.Add($"{pattern}_{i}");
             }
             return list;
         }
-
-
     }
 }
